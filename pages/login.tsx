@@ -1,10 +1,12 @@
 import { NextPage } from 'next';
 import React from 'react';
 
+import Container from 'components/UI/Container';
+
 import 'styles/index.css';
 
 const LoginPage: NextPage = () => (
-    <div className="bg-gray-900 h-screen flex flex-wrap items-center">
+    <Container className="h-screen flex flex-wrap items-center">
         <div className="container mx-auto flex justify-center pt-8">
             <div className="w-full max-w-xs self-center">
                 <h1 className="text-white text-4xl font-bold">Login</h1>
@@ -19,7 +21,7 @@ const LoginPage: NextPage = () => (
                 </div>
             </div>
         </div>
-    </div>
+    </Container>
 );
 
 export default LoginPage;
