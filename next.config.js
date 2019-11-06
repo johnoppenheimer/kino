@@ -1,8 +1,8 @@
 const path = require('path');
-const withSass = require('@zeit/next-sass');
+const withCss = require('@zeit/next-css');
 const withCustomBabelConfigFile = require('next-plugin-custom-babel-config');
 const withPlugins = require('next-compose-plugins');
 
-module.exports = withPlugins([withCustomBabelConfigFile, withSass], {
+module.exports = withPlugins([withCss, withCustomBabelConfigFile], {
     babelConfigFile: path.resolve('./babel.config.js'),
 });
