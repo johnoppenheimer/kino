@@ -13,8 +13,8 @@ const Home = () => (
             <title>Home</title>
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <Nav />
         <Container>
+            <Nav />
             <Layout>
                 <h1 className="text-white text-4xl text-bold">Search a movie or a show</h1>
                 <div className="block bg-gray-800 shadow-lg rounded p-6">
