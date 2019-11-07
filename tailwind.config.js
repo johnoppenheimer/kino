@@ -2,8 +2,10 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                plex: '#e19b0e',
-                'plex-dark': '#cd8e0f',
+                plex: {
+                    '600': '#e19b0e',
+                    '700': '#cd8e0f',
+                },
             },
         },
     },
