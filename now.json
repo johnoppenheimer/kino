@@ -1,9 +1,0 @@
-{
-    "build": {
-        "env": {
-            "WEBSITE_URL": "@website_url",
-            "PROJECT_NAME": "@project_name",
-            "client_identifier": "@client_identifier"
-        }
-    }
-}

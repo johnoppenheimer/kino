@@ -1,9 +1,10 @@
 import { NextPage } from 'next';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 
 import 'styles/index.css';
 
+import { env } from 'lib/config';
 import fetch from 'lib/fetch';
 
 import Container from 'components/UI/Container';
@@ -19,10 +20,10 @@ const RedirectPage: NextPage<IRedirectPageProps> = ({ id }) => {
     const { data: authData } = useQuery('authUser', () =>
         fetch(`https://plex.tv/api/v2/pins/${id}.json`, {
             headers: {
-                'X-Plex-Product': process.env.PROJECT_NAME,
+                'X-Plex-Product': env.projectName,
                 'X-Plex-Platform': 'Web',
-                'X-Plex-Device': `${process.env.PROJECT_NAME} (Web)`,
-                'X-Plex-Client-Identifier': process.env.CLIENT_IDENTIFIER,
+                'X-Plex-Device': `${env.projectName} (Web)`,
+                'X-Plex-Client-Identifier': env.clientId,
             },
         }),
     );
@@ -33,10 +34,10 @@ const RedirectPage: NextPage<IRedirectPageProps> = ({ id }) => {
             fetch(' https://plex.tv/users/account.json', {
                 headers: {
                     'X-Plex-Token': variables.authToken,
-                    'X-Plex-Product': process.env.PROJECT_NAME,
+                    'X-Plex-Product': env.projectName,
                     'X-Plex-Platform': 'Web',
-                    'X-Plex-Device': `${process.env.PROJECT_NAME} (Web)`,
-                    'X-Plex-Client-Identifier': process.env.CLIENT_IDENTIFIER,
+                    'X-Plex-Device': `${env.projectName} (Web)`,
+                    'X-Plex-Client-Identifier': env.clientId,
                 },
             }),
     );
