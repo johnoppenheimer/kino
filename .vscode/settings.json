@@ -1,6 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "prettier.printWidth": 120,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
