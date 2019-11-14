@@ -2,8 +2,8 @@ import { NextPage } from 'next';
 import React from 'react';
 import { useMutation } from 'react-query';
 
-import { env } from 'lib/config';
-import fetch from 'lib/fetch';
+import { env } from 'utils/config';
+import plexClient from 'utils/plexClient';
 
 import Button from 'components/UI/Button';
 import Card from 'components/UI/Card';
@@ -14,13 +14,9 @@ import 'styles/index.css';
 
 const LoginPage: NextPage = () => {
     const [mutate, { isLoading }] = useMutation(() =>
-        fetch('https://plex.tv/api/v2/pins.json?strong=true', {
-            method: 'POST',
-            headers: {
-                'X-Plex-Product': env.projectName,
-                'X-Plex-Platform': 'Web',
-                'X-Plex-Device': `${env.projectName} (Web)`,
-                'X-Plex-Client-Identifier': env.clientId,
+        plexClient.post('api/v2/pins.json', null, {
+            params: {
+                strong: true,
             },
         }),
     );

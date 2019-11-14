@@ -4,8 +4,8 @@ import { useQuery } from 'react-query';
 
 import 'styles/index.css';
 
-import { env } from 'lib/config';
-import fetch from 'lib/fetch';
+import { env } from 'utils/config';
+import plexClient from 'utils/plexClient';
 
 import Container from 'components/UI/Container';
 import Layout from 'components/UI/Layout';
@@ -17,27 +17,14 @@ interface IRedirectPageProps {
 }
 
 const RedirectPage: NextPage<IRedirectPageProps> = ({ id }) => {
-    const { data: authData } = useQuery('authUser', () =>
-        fetch(`https://plex.tv/api/v2/pins/${id}.json`, {
-            headers: {
-                'X-Plex-Product': env.projectName,
-                'X-Plex-Platform': 'Web',
-                'X-Plex-Device': `${env.projectName} (Web)`,
-                'X-Plex-Client-Identifier': env.clientId,
-            },
-        }),
-    );
+    const { data: authData } = useQuery('authUser', () => plexClient(`api/v2/pins/${id}.json`));
 
-    const { data: user, isLoading, error } = useQuery(
+    const { data: response, isLoading, error } = useQuery(
         () => ['fetchUser', { authToken: authData.authToken }],
         variables =>
-            fetch(' https://plex.tv/users/account.json', {
+            plexClient('users/account.json', {
                 headers: {
                     'X-Plex-Token': variables.authToken,
-                    'X-Plex-Product': env.projectName,
-                    'X-Plex-Platform': 'Web',
-                    'X-Plex-Device': `${env.projectName} (Web)`,
-                    'X-Plex-Client-Identifier': env.clientId,
                 },
             }),
     );
@@ -47,7 +34,7 @@ const RedirectPage: NextPage<IRedirectPageProps> = ({ id }) => {
             <Nav />
             <Layout>
                 {isLoading && <Spinner />}
-                {user && <pre className="text-white">{JSON.stringify(user, null, 2)}</pre>}
+                {response && <pre className="text-white">{JSON.stringify(response.user, null, 2)}</pre>}
             </Layout>
         </Container>
     );
