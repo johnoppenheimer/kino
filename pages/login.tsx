@@ -6,7 +6,9 @@ import { env } from 'lib/config';
 import fetch from 'lib/fetch';
 
 import Button from 'components/UI/Button';
+import Card from 'components/UI/Card';
 import Container from 'components/UI/Container';
+import Label from 'components/UI/Label';
 
 import 'styles/index.css';
 
@@ -39,13 +41,12 @@ const LoginPage: NextPage = () => {
         <Container className="flex flex-wrap items-center">
             <div className="container mx-auto flex justify-center pt-8">
                 <div className="w-full max-w-xs self-center">
-                    <h1 className="text-white text-4xl font-bold">Login</h1>
-
-                    <div className="flex justify-center bg-gray-800 shadow-lg rounded px-8 pt-6 pb-8 mb-4">
+                    <Label.Title>Login</Label.Title>
+                    <Card className="flex justify-center">
                         <Button color="plex" loading={isLoading} onClick={login}>
                             Login with Plex
                         </Button>
-                    </div>
+                    </Card>
                 </div>
             </div>
         </Container>
