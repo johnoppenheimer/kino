@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import React from 'react';
 
+import Card from 'components/UI/Card';
 import Container from 'components/UI/Container';
+import Label from 'components/UI/Label';
 import Layout from 'components/UI/Layout';
 import MovieCard from 'components/UI/MovieCard';
 import Nav from 'components/UI/Nav';
@@ -34,16 +36,16 @@ const Home = () => (
             <Nav />
             <Layout>
                 <div className="mb-6">
-                    <h1 className="text-white text-4xl font-bold">Search a movie or a show</h1>
-                    <div className="block bg-gray-800 shadow-lg rounded p-6">
+                    <Label.Title>Search a movie or a show</Label.Title>
+                    <Card>
                         <input
                             className="bg-gray-700 appearance-none rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Citizen Kane"
                         />
-                    </div>
+                    </Card>
                 </div>
                 <div className="mb-6">
-                    <h1 className="text-white text-4xl font-bold">Latest</h1>
+                    <Label.Title>Latest</Label.Title>
                     <div className="flex content-start flex-wrap">
                         <FakeList />
                     </div>
