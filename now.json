@@ -1,10 +1,5 @@
 {
     "env": {
         "TMDB_KEY": "@tmdb_key"
-    },
-    "build": {
-        "env": {
-            "TMDB_KEY": "@tmdb_key"
-        }
     }
 }
