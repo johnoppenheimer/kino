@@ -14,8 +14,8 @@ interface IMovieCardProps {
 const MovieCard = ({ title, imageUrl, url }: IMovieCardProps) => (
     <div className="lg:w-2/12 md:w-1/3 sm:w-1/2 p-2">
         <a href={url}>
-            <div className="block bg-gray-800 w-full h-auto">
-                <img className="object-cover w-full shadow-lg rounded" src={imageUrl} />
+            <div className="block bg-gray-800 w-full h-auto rounded overflow-hidden">
+                <img className="object-cover w-full shadow-lg" src={imageUrl} />
             </div>
             <p className="text-white py-2">{title}</p>
         </a>
