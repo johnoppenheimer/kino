@@ -8,6 +8,9 @@ module.exports = {
                 },
             },
         },
+        inset: {
+            '2': '0.5rem',
+        },
     },
     variants: {},
     plugins: [],

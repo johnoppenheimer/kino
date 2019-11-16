@@ -69,6 +69,7 @@ const Home = () => {
                                             url="#"
                                             title={content.title || content.original_name}
                                             imageUrl={`https://image.tmdb.org/t/p/w500${content.poster_path}`}
+                                            type={content.media_type}
                                         />
                                     ))}
                                 </div>
