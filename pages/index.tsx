@@ -4,9 +4,9 @@ import React, { useRef, useState } from 'react';
 
 import Card from 'components/UI/Card';
 import Container from 'components/UI/Container';
+import ContentCard from 'components/UI/ContentCard';
 import Label from 'components/UI/Label';
 import Layout from 'components/UI/Layout';
-import MovieCard from 'components/UI/MovieCard';
 import Nav from 'components/UI/Nav';
 import Spinner from 'components/UI/Spinner';
 
@@ -64,7 +64,7 @@ const Home = () => {
                                 </div>
                                 <div className="flex content-start flex-wrap">
                                     {contents.current.map(content => (
-                                        <MovieCard
+                                        <ContentCard
                                             key={content.id}
                                             url="#"
                                             title={content.title || content.original_name}

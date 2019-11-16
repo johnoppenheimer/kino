@@ -1,7 +1,7 @@
 import React from 'react';
 
-interface IMovieCardProps {
-    /** Title of the movie */
+interface IContentCardProps {
+    /** Title of the content */
     title: string;
 
     /** Poster url */
@@ -11,7 +11,7 @@ interface IMovieCardProps {
     url: string;
 }
 
-const MovieCard = ({ title, imageUrl, url }: IMovieCardProps) => (
+const ContentCard = ({ title, imageUrl, url }: IContentCardProps) => (
     <div className="lg:w-2/12 md:w-1/3 sm:w-1/2 p-2">
         <a href={url}>
             <div className="block bg-gray-800 w-full h-auto rounded overflow-hidden">
@@ -22,4 +22,4 @@ const MovieCard = ({ title, imageUrl, url }: IMovieCardProps) => (
     </div>
 );
 
-export default MovieCard;
+export default ContentCard;
