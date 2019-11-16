@@ -9,6 +9,7 @@ module.exports = api => {
                     components: './components',
                     styles: './styles',
                     utils: './utils',
+                    hooks: './hooks',
                 },
                 root: '.',
             },
