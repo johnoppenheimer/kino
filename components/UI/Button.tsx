@@ -33,12 +33,8 @@ const Button: React.FunctionComponent<IButtonProps> & { defaultProps: Partial<IB
             className={`${defaultColor} hover:${hoverColor} text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
             {...buttonProps}
         >
-            <div className="flex">
-                {props.loading && (
-                    <span className="mr-2">
-                        <Spinner />
-                    </span>
-                )}
+            <div className="flex items-center">
+                {props.loading && <Spinner className="mr-2" />}
                 {props.children}
             </div>
         </button>
