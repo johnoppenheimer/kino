@@ -2,7 +2,6 @@ import { NextPage } from 'next';
 import React from 'react';
 import { useMutation } from 'react-query';
 
-import { env } from 'utils/config';
 import plexClient from 'utils/plexClient';
 
 import Button from 'components/UI/Button';
@@ -26,7 +25,7 @@ const LoginPage: NextPage = () => {
             const { code, id } = await mutate();
             if (code) {
                 const websiteURL = encodeURIComponent(window.location.origin);
-                window.location.href = `https://app.plex.tv/auth#?context[device][product]=${env.projectName}&context[device][environment]=bundled&context[device][layout]=desktop&context[device][platform]=Web&context[device][device]=${env.projectName}%20(Web)&clientID=${env.clientId}&forwardUrl=${websiteURL}%2Fredirect%3Fid%3D${id}&code=${code}`;
+                window.location.href = `https://app.plex.tv/auth#?context[device][product]=${process.env.PROJECT_NAME}&context[device][environment]=bundled&context[device][layout]=desktop&context[device][platform]=Web&context[device][device]=${process.env.PROJECT_NAME}%20(Web)&clientID=${process.env.CLIENT_IDENTIFIER}&forwardUrl=${websiteURL}%2Fredirect%3Fid%3D${id}&code=${code}`;
             }
         } catch (err) {
             // TODO: show error

@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-import { env } from 'utils/config';
-
 const instance = axios.create({
     baseURL: 'https://plex.tv/',
     headers: {
-        'X-Plex-Product': env.projectName,
+        'X-Plex-Product': process.env.PROJECT_NAME,
         'X-Plex-Platform': 'Web',
-        'X-Plex-Device': `${env.projectName} (Web)`,
-        'X-Plex-Client-Identifier': env.clientId,
+        'X-Plex-Device': `${process.env.PROJECT_NAME} (Web)`,
+        'X-Plex-Client-Identifier': process.env.CLIENT_IDENTIFIER,
     },
 });
 

@@ -5,4 +5,8 @@ const withPlugins = require('next-compose-plugins');
 
 module.exports = withPlugins([withCss, withCustomBabelConfigFile], {
     babelConfigFile: path.resolve('./babel.config.js'),
+    env: {
+        CLIENT_IDENTIFIER: process.env.CLIENT_IDENTIFIER,
+        PROJECT_NAME: process.env.PROJECT_NAME,
+    },
 });

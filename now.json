@@ -1,5 +1,13 @@
 {
     "env": {
-        "TMDB_KEY": "@tmdb_key"
+        "TMDB_KEY": "@tmdb_key",
+        "CLIENT_IDENTIFIER": "@client-identifier",
+        "PROJECT_NAME": "@project-name"
+    },
+    "build": {
+        "env": {
+            "CLIENT_IDENTIFIER": "@client-identifier",
+            "PROJECT_NAME": "@project-name"
+        }
     }
 }
