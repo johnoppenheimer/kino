@@ -8,12 +8,16 @@ import Label from 'components/UI/Label';
 import Layout from 'components/UI/Layout';
 import MovieCard from 'components/UI/MovieCard';
 import Nav from 'components/UI/Nav';
+import Spinner from 'components/UI/Spinner';
 
 import useDebounce from 'hooks/useDebounce';
 
 import 'styles/index.css';
 
 const Home = () => {
+    // Has the user search something at least once
+    const [searched, setSearched] = useState(false);
+
     const [input, setInput] = useState('');
     const search = useDebounce(['multisearch', { value: input }], ({ value }) =>
         axios('/api/search', { params: { search: value } }),
@@ -25,6 +29,9 @@ const Home = () => {
     }
 
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (!searched) {
+            setSearched(true);
+        }
         setInput(event.target.value);
     };
 
@@ -49,9 +56,12 @@ const Home = () => {
                         </Card>
                     </div>
                     <div className="mb-6">
-                        {contents.current.length > 0 && (
+                        {searched && (
                             <>
-                                <Label.Title>Results</Label.Title>
+                                <div className="flex items-baseline">
+                                    <Label.Title>Results</Label.Title>
+                                    {search.isLoading && <Spinner className="ml-3" />}
+                                </div>
                                 <div className="flex content-start flex-wrap">
                                     {contents.current.map(content => (
                                         <MovieCard
