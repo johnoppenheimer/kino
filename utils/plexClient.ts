@@ -10,12 +10,4 @@ const instance = axios.create({
     },
 });
 
-/**
- * To use axios response more easily in the `react-query`,
- * use that interceptor to just return the `data`
- */
-instance.interceptors.response.use(response => {
-    return response.data;
-});
-
 export default instance;

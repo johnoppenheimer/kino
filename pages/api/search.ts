@@ -16,7 +16,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         },
     })
         .then((response: any) => {
-            res.status(200).json(response.results);
+            res.status(200).json(response.data.results);
         })
         .catch(error => {
             res.status(error.response.status).json(error.response.data);

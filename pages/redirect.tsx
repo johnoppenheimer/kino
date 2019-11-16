@@ -19,7 +19,7 @@ const RedirectPage: NextPage<IRedirectPageProps> = ({ id }) => {
     const { data: authData } = useQuery('authUser', () => plexClient(`api/v2/pins/${id}.json`));
 
     const { data: response, isLoading, error } = useQuery(
-        () => ['fetchUser', { authToken: authData.authToken }],
+        () => ['fetchUser', { authToken: authData.data.authToken }],
         variables =>
             plexClient('users/account.json', {
                 headers: {
@@ -33,7 +33,7 @@ const RedirectPage: NextPage<IRedirectPageProps> = ({ id }) => {
             <Nav />
             <Layout>
                 {isLoading && <Spinner />}
-                {response && <pre className="text-white">{JSON.stringify(response.user, null, 2)}</pre>}
+                {response && <pre className="text-white">{JSON.stringify(response.data.user, null, 2)}</pre>}
             </Layout>
         </Container>
     );
