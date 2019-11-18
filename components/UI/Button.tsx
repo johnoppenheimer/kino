@@ -16,25 +16,27 @@ interface IButtonProps extends HTMLButtonProps {
  * The `Button` support all properties of the tag `button`.
  * It also support loading, and get its color from Tailwind config
  */
-const Button: React.FunctionComponent<IButtonProps> & { defaultProps: Partial<IButtonProps> } = props => {
+const Button: React.FunctionComponent<IButtonProps> & { defaultProps: Partial<IButtonProps> } = ({
+    loading,
+    color,
+    ...props
+}) => {
     /**
-     * We need to make sure we delete the props that are not needed by the `button` element,
-     * otherwise error will be raised on the console (even though it will work)
+     * We deconstruct the props that are not needed by the `button` element,
+     * otherwise error will be raised on the console if we give not needed props
+     * (even though it will work)
      */
-    const buttonProps = Object.assign({}, props);
-    delete buttonProps.loading;
-    delete buttonProps.color;
 
-    const defaultColor = `bg-${props.color}-600`;
-    const hoverColor = `bg-${props.color}-700`;
+    const defaultColor = `bg-${color}-600`;
+    const hoverColor = `bg-${color}-700`;
 
     return (
         <button
             className={`${defaultColor} hover:${hoverColor} text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
-            {...buttonProps}
+            {...props}
         >
             <div className="flex items-center">
-                {props.loading && <Spinner className="mr-2" />}
+                {loading && <Spinner className="mr-2" />}
                 {props.children}
             </div>
         </button>
