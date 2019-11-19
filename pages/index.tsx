@@ -67,7 +67,11 @@ const Home = () => {
                                         <ContentCard
                                             key={content.id}
                                             url="#"
-                                            title={content.title || content.original_name}
+                                            title={`${content.title || content.original_name} (${
+                                                content.release_date
+                                                    ? content.release_date.substring(0, 4)
+                                                    : content.first_air_date.substring(0, 4)
+                                            })`}
                                             imageUrl={`https://image.tmdb.org/t/p/w500${content.poster_path}`}
                                             type={content.media_type}
                                         />
