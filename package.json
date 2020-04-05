@@ -11,7 +11,7 @@
         "awesome-debounce-promise": "^2.1.0",
         "axios": "^0.19.0",
         "classnames": "^2.2.6",
-        "next": "9.1.2",
+        "next": "^9.3.4",
         "react": "16.11.0",
         "react-dom": "16.11.0",
         "react-query": "^0.3.4",
