@@ -1,24 +1,22 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import radarrClient from 'utils/radarrClient';
 import tmdbClient from 'utils/tmdbClient';
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
-    if (!req.query.search) {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    if (!req.query.search || req.query.search === '') {
         return res.status(200).json([]);
     }
 
-    tmdbClient('search/multi', {
-        params: {
-            api_key: process.env.TMDB_KEY,
-            languages: 'en-US',
-            query: req.query.search,
-            page: 1,
-        },
-    })
-        .then((response: any) => {
-            res.status(200).json(response.data.results);
-        })
-        .catch(error => {
-            res.status(error.response.status).json(error.response.data);
+    try {
+        const response = await radarrClient('api/movie/lookup', {
+            params: {
+                languages: 'en-US',
+                term: req.query.search,
+            },
         });
+        res.status(200).json(response.data);
+    } catch (error) {
+        res.status(error.response.status).json(error.response.data);
+    }
 };
