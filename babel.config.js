@@ -1,4 +1,4 @@
-module.exports = api => {
+module.exports = (api) => {
     api.cache(true);
 
     const plugins = [
@@ -10,6 +10,7 @@ module.exports = api => {
                     styles: './styles',
                     utils: './utils',
                     hooks: './hooks',
+                    models: './models',
                 },
                 root: '.',
             },
