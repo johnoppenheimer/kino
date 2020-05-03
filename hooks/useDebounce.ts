@@ -20,7 +20,7 @@ import useConstant from 'use-constant';
  * @param request Promise you want to debounce
  * @param wait Debounce time
  */
-export default <T extends object>(queryKey: QueryKey<T>, request: (variables: T) => Promise<any>, wait = 200) => {
+export default <T extends object, K>(queryKey: QueryKey<T>, request: (variables: T) => Promise<K>, wait = 200) => {
     // Create a Promise that will be trigger only every `wait` time and when `T` are updateds
     const debouncedSearch = useConstant(() => AwesomeDebouncePromise(request, wait));
 
