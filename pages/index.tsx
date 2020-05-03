@@ -26,7 +26,7 @@ const Home = () => {
 
     const contents = useRef<Content[]>([]);
     if (searchResult.data) {
-        contents.current = searchResult.data.data;
+        contents.current = searchResult.data;
     }
 
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,10 +65,7 @@ const Home = () => {
                                 </div>
                                 <div className="flex content-start flex-wrap">
                                     {contents.current.map((content) => (
-                                        <ContentCard
-                                            key={`content-${content.imdbId ?? content.tmdbId}`}
-                                            content={content}
-                                        />
+                                        <ContentCard key={`content-${content.getId()}`} content={content} />
                                     ))}
                                 </div>
                             </>
