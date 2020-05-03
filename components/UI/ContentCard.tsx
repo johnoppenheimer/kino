@@ -21,10 +21,6 @@ const ContentCard = ({ content }: IContentCardProps) => {
         set({ scale: 1.05 });
     };
 
-    const imageURL = (() => {
-        return content.images[0]?.url ?? '';
-    })();
-
     return (
         <div className="lg:w-2/12 md:w-1/3 sm:w-1/2 p-2">
             <a href="">
@@ -44,7 +40,7 @@ const ContentCard = ({ content }: IContentCardProps) => {
                     >
                         {content.type}
                     </div>
-                    <img className="object-cover w-full shadow-lg" src={imageURL} />
+                    <img className="object-cover w-full shadow-lg" src={content.remotePoster} />
                 </animated.div>
                 <p className="text-white py-2">{content.title}</p>
             </a>
