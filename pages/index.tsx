@@ -12,6 +12,9 @@ import Spinner from 'components/UI/Spinner';
 
 import useDebounce from 'hooks/useDebounce';
 
+import Content from 'models/Content';
+import { search } from 'utils/localClient';
+
 import 'styles/index.css';
 
 const Home = () => {
@@ -19,13 +22,11 @@ const Home = () => {
     const [searched, setSearched] = useState(false);
 
     const [input, setInput] = useState('');
-    const search = useDebounce(['multisearch', { value: input }], ({ value }) =>
-        axios('/api/search', { params: { search: value } }),
-    );
+    const searchResult = useDebounce(['multisearch', { value: input }], ({ value }) => search(value));
 
-    const contents = useRef([]);
-    if (search.data) {
-        contents.current = search.data.data.filter(content => ['movie', 'tv'].indexOf(content.media_type) !== -1);
+    const contents = useRef<Content[]>([]);
+    if (searchResult.data) {
+        contents.current = searchResult.data.data;
     }
 
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,20 +61,13 @@ const Home = () => {
                             <>
                                 <div className="flex items-baseline">
                                     <Label.Title>Results</Label.Title>
-                                    {search.isLoading && <Spinner className="ml-3" />}
+                                    {searchResult.isLoading && <Spinner className="ml-3" />}
                                 </div>
                                 <div className="flex content-start flex-wrap">
-                                    {contents.current.map(content => (
+                                    {contents.current.map((content) => (
                                         <ContentCard
-                                            key={content.id}
-                                            url="#"
-                                            title={`${content.title || content.original_name} (${
-                                                content.release_date
-                                                    ? content.release_date.substring(0, 4)
-                                                    : content.first_air_date.substring(0, 4)
-                                            })`}
-                                            imageUrl={`https://image.tmdb.org/t/p/w500${content.poster_path}`}
-                                            type={content.media_type}
+                                            key={`content-${content.imdbId ?? content.tmdbId}`}
+                                            content={content}
                                         />
                                     ))}
                                 </div>
