@@ -16,8 +16,11 @@
         "react": "16.11.0",
         "react-dom": "16.11.0",
         "react-query": "^0.3.4",
+        "react-redux": "^7.2.0",
         "react-spring": "^9.0.0-beta.34",
+        "redux": "^4.0.5",
         "reflect-metadata": "^0.1.13",
+        "typesafe-actions": "^5.1.0",
         "use-constant": "^1.0.0"
     },
     "devDependencies": {
@@ -25,6 +28,8 @@
         "@types/node": "^12.12.5",
         "@types/react": "^16.9.11",
         "@types/react-query": "^0.3.1",
+        "@types/react-redux": "^7.1.8",
+        "@types/redux": "^3.6.0",
         "@typescript-eslint/eslint-plugin": "^2.31.0",
         "@typescript-eslint/parser": "^2.31.0",
         "@zeit/next-css": "^1.0.1",
