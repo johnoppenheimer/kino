@@ -14,6 +14,7 @@ import Spinner from 'components/UI/Spinner';
 
 import Content from 'models/Content';
 import { search } from 'utils/localClient';
+import ContentModal from 'components/pages/index/ContentModal';
 
 const debounceSearch = AwesomeDebouncePromise(async (input: string) => {
     return await search(input);
@@ -75,6 +76,7 @@ const Home: NextPage = () => {
                         )}
                     </div>
                 </Layout>
+                <ContentModal />
             </Container>
         </div>
     );
