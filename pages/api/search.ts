@@ -15,19 +15,23 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     };
 
     try {
-        const radarrRequest = radarrClient('api/movie/lookup', { params });
+        const radarrLookup = radarrClient('api/movie/lookup', { params });
 
-        const sonarrRequest = sonarrClient('api/series/lookup', { params });
+        const sonarrLookup = sonarrClient('api/series/lookup', { params });
+        const sonarrSeries = sonarrClient('api/series', { params });
 
-        const [radarrRes, sonarrRes] = await axios.all([radarrRequest, sonarrRequest]);
+        const [radarrRes, sonarrRes, series] = await axios.all([radarrLookup, sonarrLookup, sonarrSeries]);
 
         const radarrData = radarrRes.data.map((content) => {
             content.type = 'movie';
+            content.exist = new Date(content.added).getFullYear() !== 1;
+
             return content;
         });
 
         const sonarrData = sonarrRes.data.map((content) => {
             content.type = 'tv';
+            content.exist = series.data.find((serie) => serie.tvdbId === content.tvdbId);
             return content;
         });
 
