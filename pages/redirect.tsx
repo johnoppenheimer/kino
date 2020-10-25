@@ -2,8 +2,6 @@ import { NextPage } from 'next';
 import React from 'react';
 import { useQuery } from 'react-query';
 
-import 'styles/index.css';
-
 import plexClient from 'utils/plexClient';
 
 import Container from 'components/UI/Container';

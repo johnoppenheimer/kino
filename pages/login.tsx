@@ -9,8 +9,6 @@ import Card from 'components/UI/Card';
 import Container from 'components/UI/Container';
 import Label from 'components/UI/Label';
 
-import 'styles/index.css';
-
 const LoginPage: NextPage = () => {
     const [mutate, { isLoading }] = useMutation(() =>
         plexClient.post('api/v2/pins.json', null, {

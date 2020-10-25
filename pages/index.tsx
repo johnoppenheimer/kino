@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { NextPage } from 'next';
 import Head from 'next/head';
 import React, { useRef, useState } from 'react';
 
@@ -15,9 +16,7 @@ import useDebounce from 'hooks/useDebounce';
 import Content from 'models/Content';
 import { search } from 'utils/localClient';
 
-import 'styles/index.css';
-
-const Home = () => {
+const Home: NextPage = () => {
     // Has the user search something at least once
     const [searched, setSearched] = useState(false);
 
