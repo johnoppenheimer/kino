@@ -1,5 +1,10 @@
 import { IUser } from 'models/User';
 
+export interface IContent {
+    getId(): string;
+    exist(): string;
+}
+
 export default class Content {
     public id?: number;
     public title: string;
@@ -19,6 +24,7 @@ export default class Content {
     public tmdbId: string;
     public tvdbId?: string;
     public type: 'movie' | 'tv';
+    public exist: boolean = false;
 
     public getId(): string {
         if (this.id) {
