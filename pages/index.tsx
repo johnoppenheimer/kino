@@ -1,7 +1,8 @@
-import axios from 'axios';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import React, { useRef, useState } from 'react';
+import AwesomeDebouncePromise from 'awesome-debounce-promise';
+import { useQuery } from 'react-query';
 
 import Card from 'components/UI/Card';
 import Container from 'components/UI/Container';
@@ -11,17 +12,20 @@ import Layout from 'components/UI/Layout';
 import Nav from 'components/UI/Nav';
 import Spinner from 'components/UI/Spinner';
 
-import useDebounce from 'hooks/useDebounce';
-
 import Content from 'models/Content';
 import { search } from 'utils/localClient';
+
+const debounceSearch = AwesomeDebouncePromise(async (input: string) => {
+    return await search(input);
+}, 200);
 
 const Home: NextPage = () => {
     // Has the user search something at least once
     const [searched, setSearched] = useState(false);
 
     const [input, setInput] = useState('');
-    const searchResult = useDebounce(['multisearch', { value: input }], ({ value }) => search(value));
+
+    const searchResult = useQuery<Content[]>(['multi-search', input], (key, input) => debounceSearch(input));
 
     const contents = useRef<Content[]>([]);
     if (searchResult.data) {
