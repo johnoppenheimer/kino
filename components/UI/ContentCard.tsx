@@ -22,14 +22,15 @@ const ContentCard = ({ content }: IContentCardProps) => {
     };
 
     return (
-        <div className="lg:w-2/12 md:w-1/3 sm:w-1/2 p-2">
-            <a href="">
+        <div className="p-2" style={{ width: 200, height: 340 }}>
+            <a href="#">
                 <animated.div
-                    className="block bg-gray-800 w-full h-auto rounded overflow-hidden relative"
+                    className="block bg-gray-800 w-full rounded overflow-hidden relative"
                     onMouseMove={onMouseMove}
                     onMouseLeave={resetOnMouseLeave}
                     style={{
-                        transform: props.scale.interpolate(trans),
+                        transform: props.scale.to(trans),
+                        height: 276,
                     }}
                 >
                     <div
@@ -40,9 +41,12 @@ const ContentCard = ({ content }: IContentCardProps) => {
                     >
                         {content.type}
                     </div>
-                    <img className="object-cover w-full shadow-lg" src={content.remotePoster} />
+                    <img className="object-cover w-full h-full shadow-lg" src={content.remotePoster} />
                 </animated.div>
-                <p className="text-white py-2">{content.title}</p>
+                <p className="text-white py-2">
+                    {content.title}
+                    {content.exist && ' ✅'}
+                </p>
             </a>
         </div>
     );

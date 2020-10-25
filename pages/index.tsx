@@ -66,7 +66,7 @@ const Home: NextPage = () => {
                                     <Label.Title>Results</Label.Title>
                                     {searchResult.isLoading && <Spinner className="ml-3" />}
                                 </div>
-                                <div className="flex content-start flex-wrap">
+                                <div className="flex content-start flex-wrap justify-between">
                                     {contents.current.map((content) => (
                                         <ContentCard key={`content-${content.getId()}`} content={content} />
                                     ))}
