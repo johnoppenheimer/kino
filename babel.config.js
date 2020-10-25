@@ -11,6 +11,7 @@ module.exports = (api) => {
                     utils: './utils',
                     hooks: './hooks',
                     models: './models',
+                    store: './store',
                 },
                 root: '.',
             },
