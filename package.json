@@ -10,7 +10,7 @@
     "dependencies": {
         "awesome-debounce-promise": "^2.1.0",
         "axios": "^0.21.0",
-        "class-transformer": "^0.2.3",
+        "class-transformer": "^0.3.1",
         "classnames": "^2.2.6",
         "next": "^9.5.5",
         "next-redux-wrapper": "^6.0.2",
