@@ -1,8 +1,10 @@
 import classnames from 'classnames';
 import React from 'react';
 import { animated, config, useSpring } from 'react-spring';
+import { useDispatch } from 'react-redux';
 
 import Content from 'models/Content';
+import { selectContent } from 'store/content/actions';
 
 export interface IContentCardProps {
     content: Content;
@@ -12,6 +14,7 @@ const trans = (s) => `scale(${s})`;
 
 const ContentCard = ({ content }: IContentCardProps) => {
     const [props, set] = useSpring(() => ({ scale: 1, config: config.default }));
+    const dispatch = useDispatch();
 
     const resetOnMouseLeave = () => {
         set({ scale: 1 });
@@ -21,9 +24,13 @@ const ContentCard = ({ content }: IContentCardProps) => {
         set({ scale: 1.05 });
     };
 
+    const onSelectContent = () => {
+        dispatch(selectContent(content));
+    };
+
     return (
         <div className="p-2" style={{ width: 200, height: 340 }}>
-            <a href="#">
+            <button onClick={onSelectContent}>
                 <animated.div
                     className="block bg-gray-800 w-full rounded overflow-hidden relative"
                     onMouseMove={onMouseMove}
@@ -41,13 +48,13 @@ const ContentCard = ({ content }: IContentCardProps) => {
                     >
                         {content.type}
                     </div>
-                    <img className="object-cover w-full h-full shadow-lg" src={content.remotePoster} />
+                    <img className="object-cover h-full shadow-lg" src={content.remotePoster} />
                 </animated.div>
                 <p className="text-white py-2">
                     {content.title}
                     {content.exist && ' ✅'}
                 </p>
-            </a>
+            </button>
         </div>
     );
 };
