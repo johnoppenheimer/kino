@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "awesome-debounce-promise": "^2.1.0",
-        "axios": "^0.21.0",
+        "axios": "^0.21.1",
         "class-transformer": "^0.2.3",
         "classnames": "^2.2.6",
         "next": "^9.5.5",
